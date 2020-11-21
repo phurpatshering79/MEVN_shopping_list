@@ -19,7 +19,7 @@ mongoose
 
 //using the router modules that is created in a sepereate file
 //Reaching the endpoint /item would invoke the below middlwhere.
-app.use('/api/items',items) 
+app.use('/api/items', items)
 
 //Setting the port number, if not present in the environment variable, set by default
 const port = process.env.PORT || 3000
