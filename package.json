@@ -4,8 +4,11 @@
   "description": "Shopping list built with the MEVN stack",
   "main": "server.js",
   "scripts": {
+    "client-install": "yarn --cwd client install",
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client":"yarn --cwd client serve",
+    "dev":"concurrently \"node server.js\" \"yarn client\""
   },
   "author": "Phurpa Sherpa",
   "license": "MIT",
