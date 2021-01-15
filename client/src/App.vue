@@ -1,29 +1,18 @@
 <template>
   <v-app>
-    <v-app-bar app color="teal darken-1" dark>
-      <v-toolbar-title class="pl-14">To Do App</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn text rounded href="https://github.com/phurpatshering79/MEVN_shopping_list.git">
-        <font-awesome-icon :icon="['fab', 'github']" size="2x" />
-      </v-btn>
-      <v-btn @click="toggleTheme" text rounded>
-        Toggle Theme
-      </v-btn>
-    </v-app-bar>
+    <NavBar />
     <v-content> </v-content>
-    <v-footer color="teal lighten-2" padless>
-      <v-layout justify-center wrap>
-        <v-flex teal lighten-2 py-4 text-center white--text xs12>
-          {{ new Date().getFullYear() }} — <strong>To Do List</strong>
-        </v-flex>
-      </v-layout>
-    </v-footer>
+    <Footer />
   </v-app>
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue'
+import Footer from './components/Footer'
+
 export default {
   name: 'App',
+  components: { NavBar, Footer },
   data() {
     return {}
   },
