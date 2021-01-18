@@ -9,7 +9,7 @@
     </a>
 
     <v-btn @click="toggleTheme" text rounded>
-      Toggle Theme
+      {{ `DARKMODE ${this.darkModeText}` }}
     </v-btn>
   </v-app-bar>
 </template>
@@ -18,12 +18,20 @@
 export default {
   name: 'NavBar',
   data() {
-    return {}
+    return {
+      darkMode: false
+    }
+  },
+  computed: {
+    darkModeText() {
+      return this.darkMode ? 'on' : 'off'
+    }
   },
   methods: {
     toggleTheme() {
       this.$vuetify.theme.themes.dark.anchor = '#41B883'
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      this.darkMode = !this.darkMode
     }
   }
 }
