@@ -2,11 +2,14 @@
   <v-app-bar app color="teal darken-1" dark>
     <v-toolbar-title class="pl-14">To Do App</v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn text rounded href="https://github.com/phurpatshering79/MEVN_shopping_list.git">
-      <font-awesome-icon :icon="['fab', 'github']" size="2x" />
-    </v-btn>
+    <a href="https://github.com/phurpatshering79/MEVN_shopping_list.git" target="_blank">
+      <v-btn text rounded>
+        <font-awesome-icon :icon="['fab', 'github']" size="2x" />
+      </v-btn>
+    </a>
+
     <v-btn @click="toggleTheme" text rounded>
-      Toggle Theme
+      {{ `DARKMODE ${this.darkModeText}` }}
     </v-btn>
   </v-app-bar>
 </template>
@@ -15,9 +18,22 @@
 export default {
   name: 'NavBar',
   data() {
-    return {}
+    return {
+      darkMode: false
+    }
   },
-  methods: {}
+  computed: {
+    darkModeText() {
+      return this.darkMode ? 'on' : 'off'
+    }
+  },
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.themes.dark.anchor = '#41B883'
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      this.darkMode = !this.darkMode
+    }
+  }
 }
 </script>
 

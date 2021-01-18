@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <NavBar />
-    <v-content> </v-content>
+    <v-main>
+      <ToDo />
+    </v-main>
     <Footer />
   </v-app>
 </template>
@@ -9,19 +11,16 @@
 <script>
 import NavBar from './components/NavBar.vue'
 import Footer from './components/Footer'
+import ToDo from './components/ToDo'
+import { v4 as uuid } from 'uuid'
 
 export default {
   name: 'App',
-  components: { NavBar, Footer },
+  components: { NavBar, Footer, ToDo },
   data() {
     return {}
   },
-  methods: {
-    toggleTheme() {
-      this.$vuetify.theme.themes.dark.anchor = '#41B883'
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-    }
-  }
+  methods: {}
 }
 </script>
 
