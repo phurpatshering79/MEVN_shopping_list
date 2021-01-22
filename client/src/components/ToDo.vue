@@ -1,9 +1,14 @@
 <template>
   <v-container style="max-width: 500px" class="pt-16">
-    <v-text-field v-model="newTask" label="What are you working on?" solo @keydown.enter="create">
+    <v-text-field
+      v-model="newTask"
+      label="What are you working on?"
+      solo
+      @keydown.enter="create(newTask)"
+    >
       <template v-slot:append>
         <v-fade-transition>
-          <v-icon v-if="newTask" @click="create">
+          <v-icon v-if="newTask" @click="create(newTask)">
             mdi-plus
           </v-icon>
         </v-fade-transition>
@@ -60,7 +65,7 @@
             </v-icon>
           </v-scroll-x-transition>
 
-          <v-btn x-small color="red" dark @click="remove(task.id)">
+          <v-btn v-if="task.done" x-small color="red" dark @click="remove(i)">
             <v-icon x-small dark>
               mdi-cancel
             </v-icon>
@@ -72,16 +77,18 @@
 </template>
 
 <script>
-import { v4 as uuid } from 'uuid'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
     return {
-      tasks: [],
       newTask: null
     }
   },
   computed: {
+    ...mapState({
+      tasks: (state) => state.task.tasks
+    }),
     completedTasks() {
       return this.tasks.filter((task) => task.done).length
     },
@@ -93,17 +100,13 @@ export default {
     }
   },
   methods: {
-    create() {
-      this.tasks.push({
-        id: uuid(),
-        done: false,
-        name: this.newTask
-      })
-
+    ...mapActions(['addTask', 'removeTask']),
+    create(newTask) {
+      this.addTask({ newTask })
       this.newTask = null
     },
     remove(id) {
-      this.tasks = this.tasks.filter((task) => task.id !== id)
+      this.removeTask(id)
     }
   }
 }
