@@ -9,10 +9,9 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
-import Footer from './components/Footer'
-import ToDo from './components/ToDo'
-import { v4 as uuid } from 'uuid'
+import NavBar from '@/components/NavBar.vue'
+import Footer from '@/components/Footer'
+import ToDo from '@/components/ToDo'
 
 export default {
   name: 'App',
